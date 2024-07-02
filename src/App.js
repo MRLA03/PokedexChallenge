@@ -1,22 +1,27 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Contenido from './components/contenido';
 
 function App() {
+  /*const [pokemonList, setPokemonList] = useState([]);
+    const Pokedex = require("pokeapi-js-wrapper")
+    const P = new Pokedex.Pokedex()
+    useEffect(() => {
+        const pokemones = async () => {
+          try {
+            const response = await P.getPokemonsList();
+            setPokemonList(response.results);
+          } catch (error) {
+            console.error('Error al inicializar la lista:', error);
+          }
+        };
+    
+        pokemones();
+      }, []);*/  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Contenido/>
       </header>
     </div>
   );
