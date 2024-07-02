@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import './index.css';
 import Contenido from './components/contenido';
+import Paginador from './components/paginador';
 
 function App() {
   const [pokemonList, setPokemonList] = useState(() => {
@@ -11,18 +13,29 @@ function App() {
   const [pokemonListData, setPokemonListData] = useState(() => {
     const storedPokemonList = localStorage.getItem('pokemonListData');
     return storedPokemonList ? JSON.parse(storedPokemonList) : [];
-  });
-  
-  const Pokedex = require("pokeapi-js-wrapper");
-  const P = new Pokedex.Pokedex();
+  });  
+
+  const [paginaActual, setpaginaActual] = useState(1);
+  const [cantidadPagina] = useState(10);
+
+  // Función para cambiar de página
+  const paginar = numeroPagina => setpaginaActual(numeroPagina);
+
+  // Función para calcular el índice del último Pokémon en la página actual
+  const indiceUltimoPokemon = paginaActual * cantidadPagina;
+  // Función para calcular el índice del primer Pokémon en la página actual
+  const indicePrimerPokemon = indiceUltimoPokemon - cantidadPagina;
+  // Función para obtener los Pokémon de la página actual
+  const pokemonActuales = pokemonList.slice(indicePrimerPokemon, indiceUltimoPokemon);
 
   useEffect(() => {
     const fetchPokemonList = async () => {
+      const Pokedex = require("pokeapi-js-wrapper");
+      const P = new Pokedex.Pokedex();
       try {
-        const response = await P.getPokemonsList();
-        const pokemons = response.results;
-        setPokemonList(pokemons);     
-        localStorage.setItem('pokemonList', JSON.stringify(pokemons));
+        const response = await P.getPokemonsList();        
+        setPokemonList(response);     
+        localStorage.setItem('pokemonList', JSON.stringify(response));
 
         /*const informacion = {};
         for (const pokemon of pokemons) {
@@ -39,12 +52,17 @@ function App() {
     if (pokemonList.length < 1300) {
       fetchPokemonList();
     }
-  }, [P, pokemonList.length]); 
+  }, [pokemonList.length]); 
   return (
     <div className="App">
-      <header className="App-header">
-        <Contenido pokemonList={pokemonList} pokemonListData={pokemonListData} setPokemonListData={setPokemonListData}/>
-      </header>
+      
+        <Contenido pokemonList={pokemonActuales} pokemonListData={pokemonListData} setPokemonListData={setPokemonListData}/>
+        <Paginador
+          cantidadPagina={cantidadPagina}
+          totalPokemon={pokemonList.length}
+          paginate={paginar}
+        />
+      
     </div>
   );
 }

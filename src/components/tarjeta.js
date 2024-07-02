@@ -1,12 +1,11 @@
 import { useEffect } from 'react'
 
 
-const Tarjeta = ({pokemon, pokemonListData, setPokemonListData}) =>{    
-    const Pokedex = require("pokeapi-js-wrapper")
-    const P = new Pokedex.Pokedex()
-    
+const Tarjeta = ({pokemon, pokemonListData, setPokemonListData}) =>{         
     useEffect(() => {
         const fetchPokemonData = async () => {
+          const Pokedex = require("pokeapi-js-wrapper")
+          const P = new Pokedex.Pokedex()
           try {
             const response = await P.getPokemonByName(pokemon.name);
             setPokemonListData(prevState => ({
@@ -21,22 +20,21 @@ const Tarjeta = ({pokemon, pokemonListData, setPokemonListData}) =>{
         if (!pokemonListData[pokemon.name]) {
           fetchPokemonData();
         }
-    }, [P, pokemon.name, pokemonListData, setPokemonListData]);
+    }, [pokemon.name, pokemonListData, setPokemonListData]);
 
     const pokemonI = pokemonListData[pokemon.name] || {};
     return (
-        <div className="tarjeta">
-
-            <img
+        <div className="tarjeta">          
+            <img className='texto'
                 width={300}
                 height={300}
                 src={pokemonI.sprites?.front_default || ''}
-                alt={pokemon.name}
+                alt={pokemonI.name}
             />
 
-            <div className="p5">
+            <div className="texto">
                 <h3 className="text-2xl font-bold">
-                    {pokemon.name}                
+                    {pokemonI.name}                       
                 </h3>           
             </div>
         </div>

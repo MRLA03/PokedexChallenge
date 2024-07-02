@@ -5,6 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #282c34;
+
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 code {
@@ -16,11 +22,21 @@ code {
 .contenedor{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
+  grid-gap: 0.7%;
+  grid-auto-rows: minmax(100px, auto);  
+  margin: 2%;
 }
 
-/*.tarjeta{
-  filter: drop-shadow(1px 1px 20px yellow);
-  margin-bottom: -500px;
-}*/
+.tarjeta{  
+  /*box-shadow: 1px 1px 20px yellow;*/
+  /*box-shadow: 1px 1px 20px yellow;*/
+  /*filter: drop-shadow(1px 1px 20px yellow);*/
+  /*margin-bottom: -500px;*/
+  margin: 2%;
+}
+
+.texto{  
+  padding: 0px;
+  margin: -5%;
+  /*box-shadow: 1px 1px 20px blue;  */
+}
