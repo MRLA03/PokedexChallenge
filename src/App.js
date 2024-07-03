@@ -16,7 +16,7 @@ function App() {
   });  
 
   const [paginaActual, setpaginaActual] = useState(1);
-  const [cantidadPagina] = useState(10);
+  const [cantidadPagina] = useState(6);
 
   // Función para cambiar de página
   const paginar = numeroPagina => setpaginaActual(numeroPagina);

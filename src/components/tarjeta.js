@@ -1,6 +1,4 @@
 import { useEffect } from 'react'
-
-
 const Tarjeta = ({pokemon, pokemonListData, setPokemonListData}) =>{         
     useEffect(() => {
         const fetchPokemonData = async () => {
@@ -8,6 +6,7 @@ const Tarjeta = ({pokemon, pokemonListData, setPokemonListData}) =>{
           const P = new Pokedex.Pokedex()
           try {
             const response = await P.getPokemonByName(pokemon.name);
+            console.log(response);
             setPokemonListData(prevState => ({
               ...prevState,
               [pokemon.name]: response
@@ -23,6 +22,7 @@ const Tarjeta = ({pokemon, pokemonListData, setPokemonListData}) =>{
     }, [pokemon.name, pokemonListData, setPokemonListData]);
 
     const pokemonI = pokemonListData[pokemon.name] || {};
+    
     return (
         <div className="tarjeta">          
             <img className='texto'
@@ -31,10 +31,46 @@ const Tarjeta = ({pokemon, pokemonListData, setPokemonListData}) =>{
                 src={pokemonI.sprites?.front_default || ''}
                 alt={pokemonI.name}
             />
-
+            <div className='info'>
+              <div style={{ marginBottom: '4%' }}>
+                
+                <h4>Información Básica</h4>                             
+                <div>
+                  {pokemonI.height/10} m
+                </div>
+                <div>
+                  {pokemonI.weight/10} kg
+                </div>
+              </div>
+              
+              <div>
+                {pokemonI.base_experience} exp
+              </div>       
+              {pokemonI.types && (
+                <div>
+                  <h4 style={{ marginBottom: '-5%' }}>Tipo</h4>
+                  <ul>
+                    {pokemonI.types.map((type, index) => (
+                      <li key={index}>{type.type.name}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {pokemonI.stats && (
+                <div>
+                  <h4 style={{ marginBottom: '-5%' }}>Puntos Base</h4>
+                  <ul>
+                    {pokemonI.stats.map((st, index) => (
+                      <li key={index}>{st.stat.name} - {st.base_stat}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}                                          
+              {console.error(pokemonI)}
+            </div>
             <div className="texto">
                 <h3 className="text-2xl font-bold">
-                    {pokemonI.name}                       
+                    {pokemonI.name}                                           
                 </h3>           
             </div>
         </div>
