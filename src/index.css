@@ -40,6 +40,14 @@ code {
   filter: drop-shadow(1px 1px 20px white);
 }
 
+.imagen{  
+  padding: 0px;
+  margin: -5%;
+  height: 300px;
+  width: 300px;
+  /*box-shadow: 1px 1px 20px blue;  */
+}
+
 .texto{  
   padding: 0px;
   margin: -5%;
@@ -50,6 +58,9 @@ ul {
   list-style-type: none;
   padding: 0;
   display: inline-block;
+}
+.paginador{
+  margin: 0;
 }
 .paginador ul {
   list-style-type: none;

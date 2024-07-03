@@ -1,63 +1,54 @@
-/* Estilos CSS para la Pokébola */
-*, *:before, *:after {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
 
-  .pokebola {
-    position: relative;
+  .pokeball {
     width: 150px;
     height: 150px;
-    background-color: #FFF;
-    border: 5px solid #000;
-    border-radius: 50%;
-    box-shadow: inset -10px 10px 0 10px rgba(0, 0, 0, 0.1);
+    animation: rotate 1.5s linear infinite;
+    left: calc(50% - 75px);
+    display: inline-block;
+    position: absolute;
+    top: calc(50% - 75px);
+  }
+  .pokeball .inner {
+    width: 150px;
+    height: 75px;
+    border: 48.3333333333px solid #cf283a;
+    box-sizing: border-box;
+  }
+  .pokeball .upper,
+  .pokeball .lower {
+    width: 100%;
+    position: absolute;
+    height: calc(50% - 5px);
     overflow: hidden;
-    animation: gira 4s infinite;
-    margin: 20px auto;
   }
-  .pokebola:before, .pokebola:after {
-    content: "";
-    position: absolute;
+  .pokeball .upper {
+    top: 0;
   }
-  .pokebola:before {
-    background-color: #EF4036;
-    width: 100%;
-    height: 50%;
+  .pokeball .upper .inner {
+    border-radius: 123.3333333333px 123.3333333333px 0 0;
+    border-bottom: 0;
+    margin-bottom: -5px;
   }
-  .pokebola:after {
-    top: calc(50% - 10px);
-    width: 100%;
-    height: 20px;
-    background-color: #000;
+  .pokeball .lower {
+    bottom: 0;
   }
-  .pokebola-botao {
-    width: 50px;
-    height: 50px;
-    background-color: #FFF;
-    border: 10px solid #000;
+  .pokeball .lower .inner {
+    margin-top: -5px;
+    border-radius: 0 0 123.3333333333px 123.3333333333px;
+    border-top: 0;
+  }
+  .pokeball .middle {
     border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #cf283a;
     position: absolute;
-    top: calc(50% - 25px);
-    left: calc(50% - 25px);
-    z-index: 10;
+    left: calc(50% - 20px);
+    top: calc(50% - 20px);
   }
-  .pokebola-botao:before {
-    content: "";
-    position: absolute;
-    top: calc(50% - 10px);
-    left: calc(50% - 10px);
-    width: 20px;
-    height: 20px;
-    background-color: #FFF;
-    border: 3px solid #000;
-    border-radius: 50%;
-    z-index: 10;
-  }
-
-  @keyframes gira {
-    0% { transform: rotate(-45deg); }
-    50% { transform: rotate(45deg); }
-    100% { transform: rotate(-45deg); }
+  
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
   }
