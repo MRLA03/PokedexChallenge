@@ -54,14 +54,14 @@ function App() {
     }
   }, [pokemonList.length]); 
   return (
-    <div className="App">
-      
-        <Contenido pokemonList={pokemonActuales} pokemonListData={pokemonListData} setPokemonListData={setPokemonListData}/>
-        <Paginador
+    <div className="App">        
+      <Paginador
           cantidadPagina={cantidadPagina}
           totalPokemon={pokemonList.length}
           paginate={paginar}
         />
+        <Contenido pokemonList={pokemonActuales} pokemonListData={pokemonListData} setPokemonListData={setPokemonListData}/>
+        
       
     </div>
   );

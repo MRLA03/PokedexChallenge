@@ -82,7 +82,7 @@ const Tarjeta = ({pokemon, pokemonListData, setPokemonListData}) =>{
               </div>
               <div className="texto">
                 <h3 className="text-2xl font-bold">
-                  {pokemonI.name}
+                  #{pokemonI.id} - {pokemonI.name}
                 </h3>
               </div>
             </div>
