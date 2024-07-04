@@ -8,7 +8,7 @@ const Tarjeta = ({pokemon, pokemonListData, setPokemonListData}) =>{
           const P = new Pokedex.Pokedex()
           try {
             const response = await P.getPokemonByName(pokemon.name);
-            console.log(response);
+            //console.log(response);
             setPokemonListData(prevState => ({
               ...prevState,
               [pokemon.name]: response
